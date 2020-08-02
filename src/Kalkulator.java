@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
@@ -23,10 +22,12 @@ public class Kalkulator extends javax.swing.JFrame {
 
     
     public Kalkulator() {
-        int szer = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-        int wys = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-        this.setLocation((szer - this.getSize().width)/2, (wys - this.getSize().height)/2);
+        int width = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        int height = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         initComponents();
+        int widthFrame = (int) this.getSize().getWidth();
+        int heightFrame = (int) this.getSize().getHeight();
+        this.setLocation(((width/2)-(widthFrame)/2), ((height - this.getSize().height)/2+ 1/4*height));
     }
 
     /**
@@ -38,124 +39,203 @@ public class Kalkulator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Jedynka = new javax.swing.JButton();
-        Dwójka = new javax.swing.JButton();
-        Trójka = new javax.swing.JButton();
-        Czwórka = new javax.swing.JButton();
-        Piątka = new javax.swing.JButton();
-        szóstka = new javax.swing.JButton();
-        Dziewiątka = new javax.swing.JButton();
-        siódemka = new javax.swing.JButton();
-        Ósemka = new javax.swing.JButton();
-        Odejmowanie = new javax.swing.JButton();
-        Dodawanie = new javax.swing.JButton();
-        Enter = new javax.swing.JButton();
-        PoleTekstowe = new javax.swing.JTextField();
-        Usuń = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        one = new javax.swing.JButton();
+        two = new javax.swing.JButton();
+        three = new javax.swing.JButton();
+        four = new javax.swing.JButton();
+        five = new javax.swing.JButton();
+        six = new javax.swing.JButton();
+        nine = new javax.swing.JButton();
+        seven = new javax.swing.JButton();
+        eight = new javax.swing.JButton();
+        subtraction = new javax.swing.JButton();
+        addition = new javax.swing.JButton();
+        enter = new javax.swing.JButton();
+        textField = new javax.swing.JTextField();
+        clear = new javax.swing.JButton();
+        division = new javax.swing.JButton();
+        multiplication = new javax.swing.JButton();
+
+        int[] arrayOfEverySignsExceptNumbers = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45,47,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255};
+
+        textField.addKeyListener(new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+
+                if(e.getKeyCode()==KeyEvent.VK_ADD)
+                {
+                    addition.doClick();
+                }
+                else if(e.getKeyCode() == KeyEvent.VK_MULTIPLY)
+                {
+                    multiplication.doClick();
+                }
+                else if(e.getKeyCode() == KeyEvent.VK_DIVIDE)
+                {
+                    division.doClick();
+                }
+                else if(e.getKeyCode() == KeyEvent.VK_SUBTRACT)
+                {
+                    subtraction.doClick();
+                }
+                else if(e.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    enter.doClick();
+                }
+            }
+        });
+
+        textField.addKeyListener(new KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            {
+                for(int i = 0; i < arrayOfEverySignsExceptNumbers.length;i++)
+                {
+                    if(e.getKeyChar() == arrayOfEverySignsExceptNumbers[i])
+                    {
+                        e.consume();
+                    }
+                }
+
+            }
+        });
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Jedynka.setText("1");
-        Jedynka.addActionListener(new java.awt.event.ActionListener() {
+        one.setText("1");
+        one.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JedynkaActionPerformed(evt);
+                textField.setText(textField.getText()+"1");
             }
         });
 
-        Dwójka.setText("2");
-        Dwójka.addActionListener(new java.awt.event.ActionListener() {
+        two.setText("2");
+        two.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DwójkaActionPerformed(evt);
+                textField.setText(textField.getText()+"2");
             }
         });
 
-        Trójka.setText("3");
-        Trójka.addActionListener(new java.awt.event.ActionListener() {
+        three.setText("3");
+        three.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TrójkaActionPerformed(evt);
+                textField.setText(textField.getText()+"3");
             }
         });
 
-        Czwórka.setText("4");
-        Czwórka.addActionListener(new java.awt.event.ActionListener() {
+        four.setText("4");
+        four.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CzwórkaActionPerformed(evt);
+                textField.setText(textField.getText()+"4");
             }
         });
 
-        Piątka.setText("5");
-        Piątka.addActionListener(new java.awt.event.ActionListener() {
+        five.setText("5");
+        five.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PiątkaActionPerformed(evt);
+                textField.setText(textField.getText()+"5");
             }
         });
 
-        szóstka.setText("6");
-        szóstka.addActionListener(new java.awt.event.ActionListener() {
+        six.setText("6");
+        six.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                szóstkaActionPerformed(evt);
+                textField.setText(textField.getText()+"6");
             }
         });
 
-        Dziewiątka.setText("9");
-        Dziewiątka.addActionListener(new java.awt.event.ActionListener() {
+        seven.setText("7");
+        seven.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DziewiątkaActionPerformed(evt);
+                textField.setText(textField.getText()+"7");
             }
         });
 
-        siódemka.setText("7");
-        siódemka.addActionListener(new java.awt.event.ActionListener() {
+        eight.setText("8");
+        eight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siódemkaActionPerformed(evt);
+                textField.setText(textField.getText()+"8");
             }
         });
 
-        Ósemka.setText("8");
-        Ósemka.addActionListener(new java.awt.event.ActionListener() {
+        nine.setText("9");
+        nine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ÓsemkaActionPerformed(evt);
+                textField.setText(textField.getText()+"9");
             }
         });
 
-        Odejmowanie.setText("-");
-        Odejmowanie.addActionListener(new java.awt.event.ActionListener() {
+
+        subtraction.setText("-");
+        subtraction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OdejmowanieActionPerformed(evt);
             }
         });
 
-        Dodawanie.setText("+");
-        Dodawanie.addActionListener(new java.awt.event.ActionListener() {
+        addition.setText("+");
+        addition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DodawanieActionPerformed(evt);
             }
         });
 
-        Enter.setText("Enter");
-        Enter.addActionListener(new java.awt.event.ActionListener() {
+        enter.setText("Enter");
+        enter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EnterActionPerformed(evt);
             }
         });
 
-        Usuń.setText("Usuń");
-        Usuń.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsuńActionPerformed(evt);
+
+
+
+        clear.setText("Usuń");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+
+                int i = textField.getText().length() - 1;
+
+                if(textField.getText().length()>0)
+                    try
+                    {
+                        textField.setText(textField.getText(0, i));
+                    }
+                    catch (BadLocationException ex)
+                    {
+                        Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                else if(textField.getText().length()<0)
+                {
+                    clear.addKeyListener(new KeyAdapter() {
+                        public void keyPressed(KeyEvent ke) {
+                            ke.consume();
+                        }
+                    });
+                }
             }
         });
 
-        jButton1.setText("/");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        division.setText("/");
+        division.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("*");
+        multiplication.setText("*");
+        multiplication.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MnożenieActionPerformed(e);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,271 +244,216 @@ public class Kalkulator extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PoleTekstowe)
+                    .addComponent(textField)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Czwórka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(four, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Piątka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(five, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(szóstka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(six, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Dodawanie, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addition, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(division))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(siódemka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(seven, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Ósemka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(eight, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Dziewiątka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nine, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Enter)
+                                .addComponent(enter)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
+                                .addComponent(multiplication))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Jedynka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(one, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Dwójka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(two, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Trójka, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(three, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Odejmowanie, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(subtraction, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Usuń)))
+                                .addComponent(clear)))
                         .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Czwórka, Dodawanie, Dwójka, Dziewiątka, Enter, Jedynka, Odejmowanie, Piątka, Trójka, Usuń, jButton1, jButton2, siódemka, szóstka, Ósemka});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {four, addition, two, nine, enter, one, subtraction, five, three, clear, division, multiplication, seven, six, eight});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(PoleTekstowe, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Jedynka)
-                    .addComponent(Dwójka)
-                    .addComponent(Trójka)
-                    .addComponent(Odejmowanie)
-                    .addComponent(Usuń))
+                    .addComponent(one)
+                    .addComponent(two)
+                    .addComponent(three)
+                    .addComponent(subtraction)
+                    .addComponent(clear))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Czwórka)
-                    .addComponent(Piątka)
-                    .addComponent(szóstka)
-                    .addComponent(Dodawanie)
-                    .addComponent(jButton1))
+                    .addComponent(four)
+                    .addComponent(five)
+                    .addComponent(six)
+                    .addComponent(addition)
+                    .addComponent(division))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siódemka)
-                    .addComponent(Ósemka)
-                    .addComponent(Dziewiątka)
-                    .addComponent(Enter)
-                    .addComponent(jButton2))
+                    .addComponent(seven)
+                    .addComponent(eight)
+                    .addComponent(nine)
+                    .addComponent(enter)
+                    .addComponent(multiplication))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JedynkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JedynkaActionPerformed
-        
-        PoleTekstowe.setText(PoleTekstowe.getText()+"1");
-    }//GEN-LAST:event_JedynkaActionPerformed
 
-    private void DwójkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DwójkaActionPerformed
-         
-          PoleTekstowe.setText(PoleTekstowe.getText()+"2");
-        
-      
-    }//GEN-LAST:event_DwójkaActionPerformed
-
-    private void TrójkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrójkaActionPerformed
-       PoleTekstowe.setText(PoleTekstowe.getText()+"3");
-    }//GEN-LAST:event_TrójkaActionPerformed
-
-    private void CzwórkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CzwórkaActionPerformed
-    PoleTekstowe.setText(PoleTekstowe.getText()+"4");
-    }//GEN-LAST:event_CzwórkaActionPerformed
-
-    private void PiątkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PiątkaActionPerformed
-PoleTekstowe.setText(PoleTekstowe.getText()+"5");
-    }//GEN-LAST:event_PiątkaActionPerformed
-
-    private void szóstkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_szóstkaActionPerformed
-PoleTekstowe.setText(PoleTekstowe.getText()+"6");
-    }//GEN-LAST:event_szóstkaActionPerformed
-
-    private void siódemkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siódemkaActionPerformed
-PoleTekstowe.setText(PoleTekstowe.getText()+"7");
-    }//GEN-LAST:event_siódemkaActionPerformed
-
-    private void ÓsemkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ÓsemkaActionPerformed
-PoleTekstowe.setText(PoleTekstowe.getText()+"8");
-    }//GEN-LAST:event_ÓsemkaActionPerformed
-
-    private void DziewiątkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DziewiątkaActionPerformed
-PoleTekstowe.setText(PoleTekstowe.getText()+"9");
-    }//GEN-LAST:event_DziewiątkaActionPerformed
-
-    private void UsuńActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuńActionPerformed
-
-    int i = PoleTekstowe.getText().length() - 1;
-    
-   
-    
-    if(PoleTekstowe.getText().length()>0)
-        try {
-            PoleTekstowe.setText(PoleTekstowe.getText(0, i));
-        } catch (BadLocationException ex) {
-            Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Błąd usuwania");
-        }
-    else if(PoleTekstowe.getText().length()<0)
-    {
-     Usuń.addKeyListener(new KeyAdapter() {
-         public void keyPressed(KeyEvent ke) {
-     ke.consume();
-    }
-});
-    }
-
-        
-       
-
-    }//GEN-LAST:event_UsuńActionPerformed
 
     private void OdejmowanieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OdejmowanieActionPerformed
      
         OdejmowanieHandler odejmowanie = new OdejmowanieHandler();
         odejmowanie.actionPerformed(evt);
-//       Odejmowaniex2();
-//        int długość = PoleTekstowe.getText().length();
-//        System.out.println(długość);
-//        PoleTekstowe.getText();
-//     System.out.println(PobieranieDrugiejSekwencji(długość));
     }//GEN-LAST:event_OdejmowanieActionPerformed
    int długośćsek;
 
-    private void setLocation() {
+    private void setLocation()
+    {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     class OdejmowanieHandler implements ActionListener
-            {
+    {
 
         public OdejmowanieHandler() 
         {
-         int długość = PoleTekstowe.getText().length() ;
+         int długość = textField.getText().length() ;
          długośćsek = długość;
         }
 
         @Override
-        public void actionPerformed(ActionEvent ae) {
-            PoleTekstowe.setText(PoleTekstowe.getText()+ "-" );
+        public void actionPerformed(ActionEvent ae)
+        {
+          textField.setText(textField.getText()+ "-" );
         }
-            
-            }
+
+    }
     
     class DodawanieHandler implements ActionListener
-            {
+    {
 
         public DodawanieHandler() 
         {
-         int długość = PoleTekstowe.getText().length() ;
+         int długość = textField.getText().length() ;
          długośćsek = długość;
         }
 
         @Override
-        public void actionPerformed(ActionEvent ae) {
-            PoleTekstowe.setText(PoleTekstowe.getText()+ "+" );
+        public void actionPerformed(ActionEvent ae)
+        {
+            textField.setText(textField.getText()+ "+" );
         }
             
-            }
+    }
     
      class DzielenieHandler implements ActionListener
-            {
+     {
 
         public DzielenieHandler() 
         {
-         int długość = PoleTekstowe.getText().length() ;
+         int długość = textField.getText().length() ;
          długośćsek = długość;
         }
 
         @Override
-        public void actionPerformed(ActionEvent ae) {
-            PoleTekstowe.setText(PoleTekstowe.getText()+ "/" );
+        public void actionPerformed(ActionEvent ae)
+        {
+            textField.setText(textField.getText()+ "/" );
         }
-            
-            }
+
+     }
+
+    class MnożenieHandler implements ActionListener
+    {
+
+        public MnożenieHandler()
+        {
+            int długość = textField.getText().length() ;
+            długośćsek = długość;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            textField.setText(textField.getText()+ "*" );
+        }
+
+    }
     
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
-        
-        try {                                      
-            
-            try {
-                System.out.println("Znak dodawania czy odejmowania :" +PoleTekstowe.getText(długośćsek,1));
-            } catch (BadLocationException ex) {
-                Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-           
-            if(PoleTekstowe.getText(długośćsek, 1).equals("-"))
+        try
+        {                                      
+            if(textField.getText(długośćsek, 1).equals("-"))
             {
-                System.out.println("WYKONUJEMY METODE ODEJMOWANIA");
-
-                try {
+                try
+                {
                     String tekst = null;
-                    try {
-                        
-                        tekst = PoleTekstowe.getText(0,długośćsek);
-                        System.out.println("Odejmowanie długość sek " +tekst);
-                    } catch (BadLocationException ex) {
+                    try
+                    {
+                        tekst = textField.getText(0,długośćsek);
+                    }
+                    catch (BadLocationException ex)
+                    {
                         Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     int coś = Integer.valueOf(tekst);
-                    System.out.println(coś);
-                    int sekwecnja =PoleTekstowe.getText().length();
-                    System.out.println("sekwencja: " + sekwecnja);
+                    int sekwecnja = textField.getText().length();
                     int przesłany = (sekwecnja - długośćsek)-1;
                     
-                    String nazwa2 =PoleTekstowe.getText(długośćsek+1,przesłany );
+                    String nazwa2 = textField.getText(długośćsek+1,przesłany );
                     
                     int coś2 = Integer.valueOf(nazwa2);
                     
                     int wynik =coś - coś2;
                     String wynik2 = String.valueOf(wynik);
-                    System.out.println("To jest wynik:" + wynik2);
-                    PoleTekstowe.setText(wynik2);
-                } catch (BadLocationException ex) {
+                    textField.setText(wynik2);
+                }
+                catch (BadLocationException ex)
+                {
                     Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-             if(PoleTekstowe.getText(długośćsek, 1).equals("+"))
-            
+             if(textField.getText().contains("+"))
             {
+
                 String tekst = null;
-                try {
-                    tekst = PoleTekstowe.getText(0,długośćsek);
-                    
-                    System.out.println("Dodawanie pierwsza sekewcnja :"+ tekst);
-                } catch (BadLocationException ex) {
+                try
+                {
+                    tekst = textField.getText(0,długośćsek);
+                }
+                catch (BadLocationException ex)
+                {
                     Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 int coś = Integer.valueOf(tekst);
-                System.out.println("coś mordo"+coś);
-                int sekwecnja =PoleTekstowe.getText().length();
-                System.out.println("sekwencja: " + sekwecnja);
+                int sekwecnja = textField.getText().length();
                 int przesłany = (sekwecnja - długośćsek)-1;
              
                 String nazwa2 = null;
-                try {
-                    nazwa2 = PoleTekstowe.getText(długośćsek+1,przesłany );
-                } catch (BadLocationException ex) {
+                try
+                {
+                    nazwa2 = textField.getText(długośćsek+1,przesłany );
+                }
+                catch (BadLocationException ex)
+                {
                     Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
@@ -436,30 +461,31 @@ PoleTekstowe.setText(PoleTekstowe.getText()+"9");
                 
                 int wynik =coś + coś2;
                 String wynik2 = String.valueOf(wynik);
-                System.out.println("To jest wynik:" + wynik2);
-                PoleTekstowe.setText(wynik2);
+                textField.setText(wynik2);
             }
-            if(PoleTekstowe.getText(długośćsek, 1).equals("/"))
+            if(textField.getText(długośćsek, 1).equals("/"))
+
             {
             String tekst = null;
-                try {
-                    tekst = PoleTekstowe.getText(0,długośćsek);
-                    
-                    System.out.println("Dodawanie pierwsza sekewcnja :"+ tekst);
-                } catch (BadLocationException ex) {
+                try
+                {
+                    tekst = textField.getText(0,długośćsek);
+                }
+                catch (BadLocationException ex)
+                {
                     Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
                 int coś = Integer.valueOf(tekst);
-                System.out.println("coś mordo"+coś);
-                int sekwecnja =PoleTekstowe.getText().length();
-                System.out.println("sekwencja: " + sekwecnja);
+                int sekwecnja = textField.getText().length();
                 int przesłany = (sekwecnja - długośćsek)-1;
              
                 String nazwa2 = null;
-                try {
-                    nazwa2 = PoleTekstowe.getText(długośćsek+1,przesłany );
-                } catch (BadLocationException ex) {
+                try
+                {
+                    nazwa2 = textField.getText(długośćsek+1,przesłany );
+                }
+                catch (BadLocationException ex)
+                {
                     Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
@@ -467,13 +493,46 @@ PoleTekstowe.setText(PoleTekstowe.getText()+"9");
                 
                 int wynik =coś / coś2;
                 String wynik2 = String.valueOf(wynik);
-                System.out.println("To jest wynik:" + wynik2);
-                PoleTekstowe.setText(wynik2);
-            
-            
+                textField.setText(wynik2);
+            }
+
+            if(textField.getText().contains("*"))
+            {
+
+                String tekst = null;
+                try
+                {
+                    tekst = textField.getText(0,długośćsek);
+                }
+                catch (BadLocationException ex)
+                {
+                    Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                int coś = Integer.valueOf(tekst);
+                int sekwecnja = textField.getText().length();
+                int przesłany = (sekwecnja - długośćsek)-1;
+
+                String nazwa2 = null;
+                try
+                {
+                    nazwa2 = textField.getText(długośćsek+1,przesłany );
+                }
+                catch (BadLocationException ex)
+                {
+                    Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                int coś2 = Integer.valueOf(nazwa2);
+
+                int wynik =coś * coś2;
+                String wynik2 = String.valueOf(wynik);
+                textField.setText(wynik2);
             }
             
-        } catch (BadLocationException ex) {
+        }
+        catch (BadLocationException ex)
+        {
             Logger.getLogger(Kalkulator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_EnterActionPerformed
@@ -489,26 +548,30 @@ PoleTekstowe.setText(PoleTekstowe.getText()+"9");
                 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void MnożenieActionPerformed(ActionEvent evt)
+    {
+        MnożenieHandler mnożenie = new MnożenieHandler();
+        mnożenie.actionPerformed(evt);
+    }
+
     public int Odejmowaniex2()
     {
     int a = PobieraniePierwszejSekwencji();
-        PoleTekstowe.setText(PoleTekstowe.getText()+ "-" );
-   int długość = PoleTekstowe.getText().length() -1;
+        textField.setText(textField.getText()+ "-" );
+    int długość = textField.getText().length() -1;
         return długość;
     }
     
     public int PobieraniePierwszejSekwencji()
     {
-    
-        String tekst = PoleTekstowe.getText();
+        String tekst = textField.getText();
         int liczba = Integer.valueOf(tekst);
         return liczba;
-    
     }
     
     public int PobieranieDrugiejSekwencji(int dłguość) throws BadLocationException
     {
-    String nazwa = PoleTekstowe.getText(dłguość, 5);
+    String nazwa = textField.getText(dłguość, 5);
     int liczba = Integer.valueOf(nazwa);
     return liczba;
     
@@ -550,21 +613,21 @@ PoleTekstowe.setText(PoleTekstowe.getText()+"9");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Czwórka;
-    private javax.swing.JButton Dodawanie;
-    private javax.swing.JButton Dwójka;
-    private javax.swing.JButton Dziewiątka;
-    private javax.swing.JButton Enter;
-    private javax.swing.JButton Jedynka;
-    private javax.swing.JButton Odejmowanie;
-    private javax.swing.JButton Piątka;
-    private javax.swing.JTextField PoleTekstowe;
-    private javax.swing.JButton Trójka;
-    private javax.swing.JButton Usuń;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton siódemka;
-    private javax.swing.JButton szóstka;
-    private javax.swing.JButton Ósemka;
+    private javax.swing.JButton four;
+    private javax.swing.JButton addition;
+    private javax.swing.JButton two;
+    private javax.swing.JButton nine;
+    private javax.swing.JButton enter;
+    private javax.swing.JButton one;
+    private javax.swing.JButton subtraction;
+    private javax.swing.JButton five;
+    private javax.swing.JTextField textField;
+    private javax.swing.JButton three;
+    private javax.swing.JButton clear;
+    private javax.swing.JButton division;
+    private javax.swing.JButton multiplication;
+    private javax.swing.JButton seven;
+    private javax.swing.JButton six;
+    private javax.swing.JButton eight;
     // End of variables declaration//GEN-END:variables
 }
